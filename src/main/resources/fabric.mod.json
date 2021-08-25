@@ -1,0 +1,39 @@
+{
+  "schemaVersion": 1,
+  "id": "milkcrate",
+  "version": "${version}",
+
+  "name": "Milk Crate Mod",
+  "description": "A mod that adds milk crates.",
+  "authors": [
+    "funskydev"
+  ],
+  "contact": {
+    "homepage": "https://github.com/funskydev/"
+  },
+
+  "license": "CC0-1.0",
+  "icon": "assets/milkcrate/icon.png",
+
+  "environment": "*",
+  "entrypoints": {
+    "main": [
+      "funskydev.milkcrate.Main"
+    ],
+    "client": [
+      "funskydev.milkcrate.Client"
+    ]
+  },
+  "mixins": [
+    "milkcrate.mixins.json"
+  ],
+
+  "depends": {
+    "fabricloader": ">=0.11.3",
+    "fabric": "*",
+    "minecraft": "1.16.x"
+  },
+  "suggests": {
+    "another-mod": "*"
+  }
+}
