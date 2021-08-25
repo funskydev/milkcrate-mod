@@ -21,7 +21,7 @@
       "funskydev.milkcrate.Main"
     ],
     "client": [
-      "funskydev.milkcrate.Client"
+      "funskydev.milkcrate.client.Client"
     ]
   },
   "mixins": [

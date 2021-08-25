@@ -1,0 +1,6 @@
+{
+    "variants": {
+        "stacked=false": { "model": "milkcrate:block/upsidedown_milkcrate" },
+        "stacked=true": { "model": "milkcrate:block/upsidedown_stacked_milkcrate" }
+    }
+}

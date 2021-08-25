@@ -1,0 +1,12 @@
+{
+    "type": "minecraft:crafting_shapeless",
+    "ingredients": [
+      {
+        "item": "milkcrate:upsidedown_milkcrate"
+      }
+    ],
+    "result": {
+      "item": "milkcrate:milkcrate",
+      "count": 1
+    }
+  }
