@@ -7,15 +7,18 @@ import funskydev.milkcrate.util.CustomDamageSrc;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.block.BlockState;
+import net.minecraft.block.Blocks;
 import net.minecraft.block.ShapeContext;
 import net.minecraft.block.TransparentBlock;
 import net.minecraft.block.Block;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.ItemEntity;
+import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.sound.BlockSoundGroup;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.state.StateManager;
 import net.minecraft.state.property.BooleanProperty;
@@ -29,6 +32,8 @@ import net.minecraft.util.shape.VoxelShape;
 import net.minecraft.util.shape.VoxelShapes;
 import net.minecraft.world.BlockView;
 import net.minecraft.world.World;
+import net.minecraft.world.WorldAccess;
+import net.minecraft.world.WorldView;
 
 public class UDMilkCrateBlock extends TransparentBlock {
 	
@@ -77,6 +82,8 @@ public class UDMilkCrateBlock extends TransparentBlock {
         
 		if(world.isClient) return;
 		
+		if(!(entity instanceof LivingEntity)) return;
+		
 		if(entity.isSprinting() || new Random().nextInt(15) == 1) {
 			
 			BlockState state = world.getBlockState(pos);
@@ -113,6 +120,21 @@ public class UDMilkCrateBlock extends TransparentBlock {
 
 	public boolean isTranslucent(BlockState state, BlockView world, BlockPos pos) {
 		return true;
+	}
+	
+	@Override
+	public BlockSoundGroup getSoundGroup(BlockState state) {
+		return BlockSoundGroup.WOOD;
+	}
+	
+	@Override
+	public BlockState getStateForNeighborUpdate(BlockState state, Direction direction, BlockState neighborState, WorldAccess world, BlockPos pos, BlockPos neighborPos) {
+		return direction == Direction.DOWN && !this.canPlaceAt(state, world, pos) ? Blocks.AIR.getDefaultState() : super.getStateForNeighborUpdate(state, direction, neighborState, world, pos, neighborPos);
+	}
+	
+	@Override
+	public boolean canPlaceAt(BlockState state, WorldView world, BlockPos pos) {
+		return sideCoversSmallSquare(world, pos.down(), Direction.UP);
 	}
 	
 }

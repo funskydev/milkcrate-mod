@@ -11,6 +11,7 @@ import net.minecraft.block.TransparentBlock;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
+import net.minecraft.sound.BlockSoundGroup;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.state.StateManager;
 import net.minecraft.state.property.IntProperty;
@@ -85,6 +86,11 @@ public class MilkCrateBlock extends TransparentBlock {
 
 	public boolean isTranslucent(BlockState state, BlockView world, BlockPos pos) {
 		return true;
+	}
+	
+	@Override
+	public BlockSoundGroup getSoundGroup(BlockState state) {
+		return BlockSoundGroup.WOOD;
 	}
 	
 }
