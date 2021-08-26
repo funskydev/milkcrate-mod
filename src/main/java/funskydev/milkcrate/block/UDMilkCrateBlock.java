@@ -98,8 +98,8 @@ public class UDMilkCrateBlock extends TransparentBlock {
 				world.breakBlock(pos, true);
 			}
 			
-			if(entity.isSprinting()) entity.damage(new CustomDamageSrc("milkcratesprint"), new Random().nextInt(18));
-			else entity.damage(new CustomDamageSrc("milkcrate"), new Random().nextInt(10));
+			if(entity.isSprinting()) entity.damage(new CustomDamageSrc("milkcratesprint"), new Random().nextInt(15) + 3);
+			else entity.damage(new CustomDamageSrc("milkcrate"), new Random().nextInt(8) + 2);
 			
 		}
 		
