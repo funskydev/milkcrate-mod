@@ -9,10 +9,11 @@
     "funskydev"
   ],
   "contact": {
-    "homepage": "https://github.com/funskydev/"
+    "homepage": "https://github.com/funskydev/",
+    "issues" : "https://github.com/funskydev/milkcrate-mod"
   },
 
-  "license": "CC0-1.0",
+  "license": "Apache-2.0 License",
   "icon": "assets/milkcrate/icon.png",
 
   "environment": "*",
@@ -24,9 +25,7 @@
       "funskydev.milkcrate.client.Client"
     ]
   },
-  "mixins": [
-    "milkcrate.mixins.json"
-  ],
+  "mixins": [],
 
   "depends": {
     "fabricloader": ">=0.11.3",
