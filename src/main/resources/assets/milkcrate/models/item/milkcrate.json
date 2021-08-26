@@ -1,3 +1,10 @@
 {
-    "parent": "milkcrate:block/milkcrate"
+    "parent": "milkcrate:block/milkcrate",
+    "overrides": [
+        {"predicate": {"custom_model_data":0}, "model": "milkcrate:block/milkcrate"},
+        {"predicate": {"custom_model_data":1}, "model": "milkcrate:block/milkcrate_1"},
+        {"predicate": {"custom_model_data":2}, "model": "milkcrate:block/milkcrate_2"},
+        {"predicate": {"custom_model_data":3}, "model": "milkcrate:block/milkcrate_3"},
+        {"predicate": {"custom_model_data":4}, "model": "milkcrate:block/milkcrate_4"}
+    ]
 }

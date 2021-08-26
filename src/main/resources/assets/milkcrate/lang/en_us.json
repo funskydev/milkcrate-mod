@@ -1,4 +1,7 @@
 {
     "block.milkcrate.milkcrate" : "Milk Crate",
-    "block.milkcrate.upsidedown_milkcrate" : "Upside Down Milk Crate"
+    "block.milkcrate.upsidedown_milkcrate" : "Upside Down Milk Crate",
+
+    "death.attack.milkcrate": "%1$s learned that the milk crate challenge can be dangerous",
+    "death.attack.milkcratesprint": "%1$s tried to sprint on milk crates"
 }

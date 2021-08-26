@@ -9,6 +9,124 @@
           "name": "milkcrate:milkcrate"
         }
       ],
+      "functions": [
+        {
+          "function": "minecraft:copy_state",
+          "block": "milkcrate:milkcrate",
+          "properties": [
+            "milk"
+          ],
+          "conditions": [
+            {
+              "condition": "minecraft:block_state_property",
+              "block": "milkcrate:milkcrate",
+              "properties": {
+                "milk": "1"
+              }
+            }
+          ]
+        },
+        {
+          "function": "minecraft:copy_state",
+          "block": "milkcrate:milkcrate",
+          "properties": [
+            "milk"
+          ],
+          "conditions": [
+            {
+              "condition": "minecraft:block_state_property",
+              "block": "milkcrate:milkcrate",
+              "properties": {
+                "milk": "2"
+              }
+            }
+          ]
+        },
+        {
+          "function": "minecraft:copy_state",
+          "block": "milkcrate:milkcrate",
+          "properties": [
+            "milk"
+          ],
+          "conditions": [
+            {
+              "condition": "minecraft:block_state_property",
+              "block": "milkcrate:milkcrate",
+              "properties": {
+                "milk": "3"
+              }
+            }
+          ]
+        },
+        {
+          "function": "minecraft:copy_state",
+          "block": "milkcrate:milkcrate",
+          "properties": [
+            "milk"
+          ],
+          "conditions": [
+            {
+              "condition": "minecraft:block_state_property",
+              "block": "milkcrate:milkcrate",
+              "properties": {
+                "milk": "4"
+              }
+            }
+          ]
+        },
+        {
+          "function": "minecraft:set_nbt",
+          "tag": "{CustomModelData:1}",
+          "conditions": [
+            {
+              "condition": "minecraft:block_state_property",
+              "block": "milkcrate:milkcrate",
+              "properties": {
+                "milk": "1"
+              }
+            }
+          ]
+        },
+        {
+          "function": "minecraft:set_nbt",
+          "tag": "{CustomModelData:2}",
+          "conditions": [
+            {
+              "condition": "minecraft:block_state_property",
+              "block": "milkcrate:milkcrate",
+              "properties": {
+                "milk": "2"
+              }
+            }
+          ]
+        },
+        {
+          "function": "minecraft:set_nbt",
+          "tag": "{CustomModelData:3}",
+          "conditions": [
+            {
+              "condition": "minecraft:block_state_property",
+              "block": "milkcrate:milkcrate",
+              "properties": {
+                "milk": "3"
+              }
+            }
+          ]
+        },
+        {
+          "function": "minecraft:set_nbt",
+          "tag": "{CustomModelData:4}",
+          "conditions": [
+            {
+              "condition": "minecraft:block_state_property",
+              "block": "milkcrate:milkcrate",
+              "properties": {
+                "milk": "4"
+              }
+            }
+          ]
+        }
+      ],
       "conditions": [
         {
           "condition": "minecraft:survives_explosion"

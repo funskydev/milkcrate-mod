@@ -1,5 +1,9 @@
 {
     "variants": {
-        "": { "model": "milkcrate:block/milkcrate" }
+        "milk=0": { "model": "milkcrate:block/milkcrate" },
+        "milk=1": { "model": "milkcrate:block/milkcrate_1" },
+        "milk=2": { "model": "milkcrate:block/milkcrate_2" },
+        "milk=3": { "model": "milkcrate:block/milkcrate_3" },
+        "milk=4": { "model": "milkcrate:block/milkcrate_4" }
     }
 }

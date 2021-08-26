@@ -1,12 +1,18 @@
 package funskydev.milkcrate.block;
 
+import java.util.Random;
+
 import funskydev.milkcrate.init.BlocksManager;
+import funskydev.milkcrate.util.CustomDamageSrc;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.ShapeContext;
 import net.minecraft.block.TransparentBlock;
 import net.minecraft.block.Block;
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityType;
+import net.minecraft.entity.ItemEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -18,6 +24,7 @@ import net.minecraft.util.Hand;
 import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
+import net.minecraft.util.math.Vec3d;
 import net.minecraft.util.shape.VoxelShape;
 import net.minecraft.util.shape.VoxelShapes;
 import net.minecraft.world.BlockView;
@@ -26,6 +33,9 @@ import net.minecraft.world.World;
 public class UDMilkCrateBlock extends TransparentBlock {
 	
 	public static final BooleanProperty STACKED = BooleanProperty.of("stacked");
+	
+	public static final VoxelShape shape1 = VoxelShapes.cuboid(0.0625f, 0f, 0.0625f, 0.9375f, 0.5f, 0.9375f);
+	public static final VoxelShape shape2 = VoxelShapes.cuboid(0.0625f, 0f, 0.0625f, 0.9375f, 1f, 0.9375f);
 	
 	public UDMilkCrateBlock(Settings settings) {
 		super(settings);
@@ -46,13 +56,7 @@ public class UDMilkCrateBlock extends TransparentBlock {
 			
 			if(is.getItem() == Item.fromBlock(BlocksManager.UD_MILKCRATE)) {
 				
-				if(!player.isCreative()) {
-					if(is.getCount() < 2) {
-						is.decrement(1);
-					} else {
-						is.decrement(1);
-					}
-				}
+				if(!player.isCreative()) is.decrement(1);
 				
 				world.setBlockState(pos, state.with(STACKED, true));
 				player.playSound(SoundEvents.BLOCK_WOOD_PLACE, 1, 1);
@@ -69,9 +73,37 @@ public class UDMilkCrateBlock extends TransparentBlock {
     }
 	
 	@Override
+    public void onSteppedOn(World world, BlockPos pos, Entity entity) {
+        
+		if(world.isClient) return;
+		
+		if(entity.isSprinting() || new Random().nextInt(15) == 1) {
+			
+			BlockState state = world.getBlockState(pos);
+			
+			if(state.get(STACKED).booleanValue()) {
+				world.setBlockState(pos, state.with(STACKED, false));
+				ItemEntity item = (ItemEntity) EntityType.ITEM.create(world);
+				item.setStack(new ItemStack(Item.fromBlock(BlocksManager.UD_MILKCRATE)));
+				item.refreshPositionAfterTeleport(Vec3d.ofBottomCenter(pos));
+				world.spawnEntity(item);
+			} else {
+				world.breakBlock(pos, true);
+			}
+			
+			if(entity.isSprinting()) entity.damage(new CustomDamageSrc("milkcratesprint"), new Random().nextInt(18));
+			else entity.damage(new CustomDamageSrc("milkcrate"), new Random().nextInt(10));
+			
+		}
+		
+        super.onSteppedOn(world, pos, entity);
+        
+    }
+	
+	@Override
 	public VoxelShape getOutlineShape(BlockState state, BlockView view, BlockPos pos, ShapeContext context) {
-		if (state.get(STACKED).booleanValue() == false) return VoxelShapes.cuboid(0.0625f, 0f, 0.0625f, 0.9375f, 0.5f, 0.9375f);
-		else return VoxelShapes.cuboid(0.0625f, 0f, 0.0625f, 0.9375f, 1f, 0.9375f);
+		if (state.get(STACKED).booleanValue()) return shape2;
+		else return shape1;
 	}
 	 
 	@Environment(EnvType.CLIENT)

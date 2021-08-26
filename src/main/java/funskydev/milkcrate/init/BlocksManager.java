@@ -14,8 +14,9 @@ import net.minecraft.util.registry.Registry;
 
 public class BlocksManager {
 	
-	public static final Block MILKCRATE = new MilkCrateBlock(FabricBlockSettings.of(Material.WOOD).strength(0.2f));
-	public static final Block UD_MILKCRATE = new UDMilkCrateBlock(FabricBlockSettings.of(Material.WOOD).strength(0.2f));
+	public static final Block MILKCRATE = new MilkCrateBlock(FabricBlockSettings.of(Material.WOOD).strength(0.06f));
+	
+	public static final Block UD_MILKCRATE = new UDMilkCrateBlock(FabricBlockSettings.of(Material.WOOD).strength(0.06f));
 	
 	public static void init() {
 		
